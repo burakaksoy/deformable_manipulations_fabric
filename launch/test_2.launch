@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Launch RVIZ  -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find deformable_manipulations_fabric)/rviz/fabric_sim_test_2.rviz" output="screen"/>
+
+    <node type="rviz" name="rviz_xy" pkg="rviz" args="-d $(find deformable_manipulations_fabric)/rviz/fabric_sim_test_2xy.rviz" output="screen"/>
+    <node type="rviz" name="rviz_yz" pkg="rviz" args="-d $(find deformable_manipulations_fabric)/rviz/fabric_sim_test_2yz.rviz" output="screen"/>
+    <node type="rviz" name="rviz_xz" pkg="rviz" args="-d $(find deformable_manipulations_fabric)/rviz/fabric_sim_test_2xz.rviz" output="screen"/>
+
+    <!-- Launch the fabric Simulation that reads the location data of robots and attaches the fabric corners to those locations  -->
+    <!-- REPRESENTS THE REAL fabric-->
+    <node type="fabric_simulator_node" name="fabric_simulator_node" pkg="fabric_simulator" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator.yaml" subst_value="true" />
+    </node>
+
+    <!-- REPRESENTS THE DELTA_X fabric-->
+    <node type="fabric_simulator_node" name="fabric_simulator_node_x" pkg="fabric_simulator" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_x.yaml" subst_value="true" />
+    </node>
+
+    <!-- REPRESENTS THE DELTA_Y fabric-->
+    <node type="fabric_simulator_node" name="fabric_simulator_node_y" pkg="fabric_simulator" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_y.yaml" subst_value="true" />
+    </node>
+
+    <!-- REPRESENTS THE DELTA_Z fabric-->
+    <node type="fabric_simulator_node" name="fabric_simulator_node_z" pkg="fabric_simulator" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_z.yaml" subst_value="true" />
+    </node>
+
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+    <!-- Launch the Distance Publisher between the fabric and the specified Polyhedron -->
+    <!-- REPRESENTS THE REAL fabric DISTANCE -->
+    <node type="fabric_to_polyhedron_distance.py" name="fabric_to_polyhedron_distance" pkg="deformable_manipulations_fabric" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance.yaml" subst_value="true" />
+    </node>
+
+    <!-- REPRESENTS THE DELTA_X fabric DISTANCE -->
+    <node type="fabric_to_polyhedron_distance.py" name="fabric_to_polyhedron_distance_x" pkg="deformable_manipulations_fabric" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance_x.yaml" subst_value="true" />
+        <!-- <param name="frame_id" value="$(optenv DINGO_LASER_MOUNT front)_laser" /> -->
+    </node>
+
+
+    <!-- REPRESENTS THE DELTA_Y fabric DISTANCE -->
+    <node type="fabric_to_polyhedron_distance.py" name="fabric_to_polyhedron_distance_y" pkg="deformable_manipulations_fabric" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance_y.yaml" subst_value="true" />
+    </node>
+
+
+    <!-- REPRESENTS THE DELTA_Z fabric DISTANCE -->
+    <node type="fabric_to_polyhedron_distance.py" name="fabric_to_polyhedron_distance_z" pkg="deformable_manipulations_fabric" output="screen">
+        <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance_z.yaml" subst_value="true" />
+    </node>
+
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- SPACE MOUSE -->
+    <include file="$(find spacenav_node)/launch/classic.launch"/>
+
+    <!-- <node type="fake_odom_publisher_gui_extended.py" name="fake_odom_publisher_gui" pkg="deformable_manipulations_fabric" output="screen"> -->
+    <node type="fake_odom_publisher_gui_extended.py" name="fake_odom_publisher_gui" pkg="deformable_manipulations_fabric" output="screen">
+        <!-- <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance.yaml" subst_value="true" /> -->
+    </node>
+
+    <node type="fabric_position_controller_safe.py" name="fabric_position_controller_node" pkg="deformable_manipulations_fabric" output="screen" launch-prefix="gnome-terminal --tab --command">
+        <!-- <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance.yaml" subst_value="true" /> -->
+    </node>
+    
+</launch>

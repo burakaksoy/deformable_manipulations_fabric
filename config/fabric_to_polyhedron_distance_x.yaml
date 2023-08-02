@@ -1,0 +1,29 @@
+fabric_marker_topic_name: "/fabric_points_x"
+fabric_face_tri_ids_topic_name: "/fabric_face_tri_ids_x"
+
+pub_rate_min_distance: 50 # depending on the complexity of the fabric and the polyhedron, this rate may not be achieved
+
+pub_distance_topic_name: "/distance_to_obj_x"
+
+viz_polyhedron_topic_name: "/polyhedron_x"
+viz_min_distance_line_topic_name: "/min_distance_line_marker_x"
+viz_min_distance_line_color_rgba: [1.0, 0.0, 0.0, 1.0]
+viz_polyhedron_color_rgba: [1.0, 0.0, 0.0, 0.8]
+
+polyhedron_model_obj_file_path: $(find deformable_manipulations_fabric)/models/mandrel.obj
+max_polyhedron_faces: 100 # if the loaded object file has more than this parameter faces, it will be simplified.
+polyhedron_translation: [0, 0, 0]
+polyhedron_rotationAxis: [1, 0, 0]
+polyhedron_rotationAngle: 90.0 # degrees
+polyhedron_scale: [0.029, 0.029, 0.029]
+# polyhedron_scale: [1, 1, 1]
+
+# polyhedron_model_obj_file_path: $(find deformable_manipulations_fabric)/models/bunny_10k.obj
+# max_polyhedron_faces: 100 # if the loaded object file has more than this parameter faces, it will be simplified.
+# polyhedron_translation: [0, 0, 0]
+# polyhedron_rotationAxis: [1, 0, 0]
+# polyhedron_rotationAngle: 0.0 # degrees
+# polyhedron_scale: [1, 1, 1]
+
+polyhedron_publish: True
+pub_rate_polyhedron: 1
