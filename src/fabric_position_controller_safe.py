@@ -18,6 +18,8 @@ from std_srvs.srv import Empty, EmptyResponse
 
 import cvxpy as cp
 
+import time 
+
 
 class PIDController:
     def __init__(self, Kp=1.0, Ki=0.0, Kd=0.0):
@@ -145,8 +147,10 @@ class PositionControllerNode:
                         # Get control output from PID controller                
                         control_output = self.pid_controllers[particle].output()
 
+                        # init_t = time.time()
                         # Get safe control output using control barrier functions
                         control_output_safe = self.calculate_safe_control_output(control_output) # safe
+                        # rospy.logwarn("QP solver calculation time: " + str(1000*(time.time() - init_t)) + " ms.")
 
                         if control_output_safe is not None:
                             # Scale down the calculated output if its norm is higher than the specified norm max_u

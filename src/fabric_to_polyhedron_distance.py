@@ -17,7 +17,7 @@ import std_msgs.msg  # Float32
 import trimesh # To read obj and find the distance between the obj file and the fabric mesh
 import numpy as np
 
-
+import time 
 
 
 class FabricToPolyhedronDistance:
@@ -148,10 +148,14 @@ class FabricToPolyhedronDistance:
             # point_on_polyhedron = closest_points[min_distance_index].squeeze()
 
             # ------------------------ METHOD 3: ONLY POSITIVE DISTANCES ------------------------
+            # init_t = time.time()
+
             closest_points, distances, _ = self.polyhedron_mesh.nearest.on_surface(self.vertices)
 
             # Find the minimum element in the array
             min_distance = np.min(distances)
+
+            # rospy.logwarn("Fabric distance calculation time: " + str(1000*(time.time() - init_t)) + " ms.")
 
             # Find the index of the minimum element in the array
             min_distance_index = np.argmin(distances)

@@ -9,22 +9,22 @@
 
     <!-- Launch the fabric Simulation that reads the location data of robots and attaches the fabric corners to those locations  -->
     <!-- REPRESENTS THE REAL fabric-->
-    <node type="fabric_simulator_node" name="fabric_simulator_node" pkg="fabric_simulator" output="screen">
+    <node type="fabric_simulator_node" name="fabric_simulator_node" pkg="fabric_simulator" output="log">
         <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator.yaml" subst_value="true" />
     </node>
 
     <!-- REPRESENTS THE DELTA_X fabric-->
-    <node type="fabric_simulator_node" name="fabric_simulator_node_x" pkg="fabric_simulator" output="screen">
+    <node type="fabric_simulator_node" name="fabric_simulator_node_x" pkg="fabric_simulator" output="log">
         <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_x.yaml" subst_value="true" />
     </node>
 
     <!-- REPRESENTS THE DELTA_Y fabric-->
-    <node type="fabric_simulator_node" name="fabric_simulator_node_y" pkg="fabric_simulator" output="screen">
+    <node type="fabric_simulator_node" name="fabric_simulator_node_y" pkg="fabric_simulator" output="log">
         <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_y.yaml" subst_value="true" />
     </node>
 
     <!-- REPRESENTS THE DELTA_Z fabric-->
-    <node type="fabric_simulator_node" name="fabric_simulator_node_z" pkg="fabric_simulator" output="screen">
+    <node type="fabric_simulator_node" name="fabric_simulator_node_z" pkg="fabric_simulator" output="log">
         <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_simulator_z.yaml" subst_value="true" />
     </node>
 
@@ -67,7 +67,7 @@
         <!-- <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance.yaml" subst_value="true" /> -->
     </node>
 
-    <node type="fabric_position_controller_safe.py" name="fabric_position_controller_node" pkg="deformable_manipulations_fabric" output="screen" launch-prefix="gnome-terminal --tab --command">
+    <node type="fabric_position_controller_safe.py" name="fabric_position_controller_node" pkg="deformable_manipulations_fabric" output="log">
         <!-- <rosparam command="load" file="$(find deformable_manipulations_fabric)/config/fabric_to_polyhedron_distance.yaml" subst_value="true" /> -->
     </node>
     
