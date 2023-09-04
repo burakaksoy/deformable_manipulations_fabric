@@ -26,7 +26,7 @@ fabric_bending_compliance: 1.0e-7 # Note, fabric stretching compliance assumed t
 
 # Fabric Initial Transformations
 # initial_height: 0.0 # initial fabric height from ground (m) (Deprecated, use fabric_translation instead)
-fabric_translation: [0, 0, 0.8]
+fabric_translation: [0, 0, 1.5]
 fabric_rotationAxis: [0, 0, 1]
 fabric_rotationAngle: 0.0
 fabric_scale: [1, 1, 1]
@@ -63,6 +63,25 @@ fabric_points_topic_name: "fabric_points" # topic name to publish the RVIZ visua
 fabric_points_frame_id: "map" # the reference tf frame ID that the visualization marker msgs are published in.
 
 face_tri_ids_topic_name: "fabric_face_tri_ids"
+
+point_marker_scale: 0.015
+
+point_marker_color_r: 1.0
+point_marker_color_g: 0.5
+point_marker_color_b: 1.0
+point_marker_color_a: 1.0
+
+line_marker_scale_multiplier: 1.0
+
+line_marker_color_r: 0.0
+line_marker_color_g: 1.0
+line_marker_color_b: 0.0
+line_marker_color_a: 0.0
+
+mesh_marker_color_r: 0.25
+mesh_marker_color_g: 0.5
+mesh_marker_color_b: 0.5
+mesh_marker_color_a: 0.6
 
 # Odometry topics that publishes robot positions to the fabric simulator
 odom_01_topic_name: "d1/ground_truth/fabric_mount/odom"

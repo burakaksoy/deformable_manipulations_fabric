@@ -52,17 +52,19 @@ class FabricToPolyhedronDistance:
         self.polyhedron_mesh = trimesh.load_mesh(self.polyhedron_model_obj_file_path)
 
         self.max_polyhedron_faces = rospy.get_param("~max_polyhedron_faces", 300)
+        rospy.loginfo("Loaded mesh has: " + str(len(self.polyhedron_mesh.faces)) + " faces.")
 
         if len(self.polyhedron_mesh.faces) > self.max_polyhedron_faces:
             # Check the number of faces in the original mesh
-            rospy.logwarn("The loaded mesh has " + str() + " faces that is more than specified max faces =" + str(self.max_polyhedron_faces) + ".")
+            rospy.logwarn("The loaded mesh has faces more than specified max faces =" + str(self.max_polyhedron_faces) + ".")
             rospy.logwarn("The loaded mesh will be simplified accordingly.")
 
             # Perform quadric mesh simplification
             self.polyhedron_mesh = self.polyhedron_mesh.simplify_quadric_decimation(self.max_polyhedron_faces)
+            rospy.logwarn("Loaded mesh has: " + str(len(self.polyhedron_mesh.faces)) + " faces after simplification.")
 
         if not self.polyhedron_mesh.is_watertight:
-            rospy.logwarn('Warning: polyhedron_mesh is not closed, signed_distance might not be accurate')
+            rospy.logwarn('Warning: polyhedron_mesh is not closed, signed_distance may not be accurate')
 
         # Translate rotate scale the polyhedron 
         self.polyhedron_mesh.apply_scale(self.polyhedron_scale)
@@ -83,28 +85,31 @@ class FabricToPolyhedronDistance:
         rospy.Subscriber(self.fabric_marker_topic_name, 
                          visualization_msgs.msg.Marker, 
                          self.fabric_marker_sub_callback, 
-                         queue_size=1)
+                         queue_size=10)
         
         # rospy.Subscriber(self.fabric_face_tri_ids_topic_name, 
         #                  std_msgs.msg.Int32MultiArray, 
         #                  self.fabric_face_tri_ids_sub_callback, 
         #                  queue_size=1)
 
-        self.pub_distance          = rospy.Publisher(self.pub_distance_topic_name, std_msgs.msg.Float32, queue_size=1)
-        self.pub_min_distance_line = rospy.Publisher(self.viz_min_distance_line_topic_name, visualization_msgs.msg.Marker, queue_size=1)
+        self.pub_distance          = rospy.Publisher(self.pub_distance_topic_name, std_msgs.msg.Float32, queue_size=10)
+        self.pub_min_distance_line = rospy.Publisher(self.viz_min_distance_line_topic_name, visualization_msgs.msg.Marker, queue_size=10)
 
         if self.polyhedron_publish:
             self.pub_polyhedron = rospy.Publisher(self.viz_polyhedron_topic_name, visualization_msgs.msg.Marker, queue_size=1)
+            self.pub_polyhedron_wireframe = rospy.Publisher(self.viz_polyhedron_topic_name + "_wireframe", visualization_msgs.msg.Marker, queue_size=1)
 
             self.polyhedron_pub_timer = rospy.Timer(rospy.Duration(1. / self.pub_rate_polyhedron), self.polyhedron_pub_timer_callback)
         
         self.min_distance_pub_timer = rospy.Timer(rospy.Duration(1. / self.pub_rate_min_distance), self.min_distance_pub_timer_callback)
         
+    """
     def fabric_face_tri_ids_sub_callback(self, msg):
         if self.face_tri_ids is None:
             # every three integers represent the indices of a single triangle's vertices
             self.face_tri_ids = np.array(msg.data).reshape((-1, 3))
             # print(self.face_tri_ids)
+    """
 
 
     def fabric_marker_sub_callback(self, msg):
@@ -116,7 +121,7 @@ class FabricToPolyhedronDistance:
     def min_distance_pub_timer_callback(self,event):
         # # if self.face_tri_ids is not None:
         if self.vertices is not None:
-
+            """
             # ------------------------ METHOD 1: SIGNED DISTANCES ------------------------
             # # Use signed_distance to compute the signed distances from fabric vertices to the polyhedron
             # distances = -self.proximity_query_polyhedron.signed_distance(self.vertices) # NOTE: Creates a bottleneck!
@@ -146,10 +151,11 @@ class FabricToPolyhedronDistance:
 
             # point_on_fabric = self.vertices[min_distance_index]
             # point_on_polyhedron = closest_points[min_distance_index].squeeze()
+            """
 
             # ------------------------ METHOD 3: ONLY POSITIVE DISTANCES ------------------------
             # init_t = time.time()
-
+            
             closest_points, distances, _ = self.polyhedron_mesh.nearest.on_surface(self.vertices)
 
             # Find the minimum element in the array
@@ -205,6 +211,35 @@ class FabricToPolyhedronDistance:
 
         # Publish the Polyhedron Marker message
         self.pub_polyhedron.publish(marker)
+
+        # # Create a new Marker message for the wireframe
+        wireframe_marker = visualization_msgs.msg.Marker()
+        wireframe_marker.header.frame_id = "map"
+        wireframe_marker.type = wireframe_marker.LINE_LIST
+        wireframe_marker.action = wireframe_marker.ADD
+        wireframe_marker.scale.x = 0.01 # Choose a suitable line width
+        wireframe_marker.pose.orientation.w = 1.0
+        
+        # Set color for wireframe
+        wireframe_marker.color.r = 0.5
+        wireframe_marker.color.g = 0.5
+        wireframe_marker.color.b = 0.5
+        wireframe_marker.color.a = 0.9
+        
+        for face in self.polyhedron_mesh.faces:
+            triangle_points = self.polyhedron_mesh.vertices[face]
+            for i in range(3):
+                p1 = geometry_msgs.msg.Point()
+                p1.x, p1.y, p1.z = triangle_points[i]
+                
+                p2 = geometry_msgs.msg.Point()
+                p2.x, p2.y, p2.z = triangle_points[(i+1) % 3]
+                
+                wireframe_marker.points.append(p1)
+                wireframe_marker.points.append(p2)
+        
+        # Publish the wireframe Marker message
+        self.pub_polyhedron_wireframe.publish(wireframe_marker)
 
     def publish_min_distance_line_marker(self, point_on_fabric, point_on_polyhedron):
         # Prepare a Marker message for the shortest distance

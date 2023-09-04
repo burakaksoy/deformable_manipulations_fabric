@@ -1,0 +1,23 @@
+# Fabric simulation subs parameters
+fabric_x: 2.0 # fabric x size in meters
+fabric_y: 2.0 # fabric y size in meters
+fabric_resolution: 7 # particle resolution per meter 
+
+fabric_stretching_compliance: 1.0e-9  # 0.0
+fabric_bending_compliance: 1.0e-4 # 1.0e-7 # Note, fabric stretching compliance assumed to be 0.0 already.
+
+custom_static_particles_odom_topic_prefix: odom_particle_
+custom_static_particles: [0,14,210,224] # specify the particle ids to set as static
+
+
+# Other global params
+leader_particle: 0 # 0
+follower_particles: [14,210,224]
+
+# Perturbation Amount Parameters
+delta_x: 0.1
+delta_y: 0.1
+delta_z: 0.1
+
+
+
