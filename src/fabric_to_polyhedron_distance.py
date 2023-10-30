@@ -224,7 +224,7 @@ class FabricToPolyhedronDistance:
         wireframe_marker.color.r = 0.5
         wireframe_marker.color.g = 0.5
         wireframe_marker.color.b = 0.5
-        wireframe_marker.color.a = 0.9
+        wireframe_marker.color.a = 0.0
         
         for face in self.polyhedron_mesh.faces:
             triangle_points = self.polyhedron_mesh.vertices[face]

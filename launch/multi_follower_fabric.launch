@@ -63,7 +63,7 @@
         <rosparam param="line_marker_color_r"                       subst_value="true">0.2</rosparam>
         <rosparam param="line_marker_color_g"                       subst_value="true">1.0</rosparam>
         <rosparam param="line_marker_color_b"                       subst_value="true">0.2</rosparam>
-        <rosparam param="line_marker_color_a"                       subst_value="true">0.9</rosparam>
+        <rosparam param="line_marker_color_a"                       subst_value="true">0.0</rosparam>
 
         <rosparam param="mesh_marker_color_r"                       subst_value="true">0.1</rosparam>
         <rosparam param="mesh_marker_color_g"                       subst_value="true">1.0</rosparam>
@@ -127,19 +127,19 @@
             <rosparam param="point_marker_color_r"                      subst_value="true">1.0</rosparam>
             <rosparam param="point_marker_color_g"                      subst_value="true">0.0</rosparam>
             <rosparam param="point_marker_color_b"                      subst_value="true">0.0</rosparam>
-            <rosparam param="point_marker_color_a"                      subst_value="true">0.6</rosparam>
+            <rosparam param="point_marker_color_a"                      subst_value="true">0.2</rosparam>
 
-            <rosparam param="line_marker_scale_multiplier"              subst_value="true">6</rosparam>
+            <rosparam param="line_marker_scale_multiplier"              subst_value="true">1</rosparam>
 
             <rosparam param="line_marker_color_r"                       subst_value="true">1.0</rosparam>
             <rosparam param="line_marker_color_g"                       subst_value="true">0.0</rosparam>
             <rosparam param="line_marker_color_b"                       subst_value="true">0.0</rosparam>
-            <rosparam param="line_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="line_marker_color_a"                       subst_value="true">0.0</rosparam>
 
             <rosparam param="mesh_marker_color_r"                       subst_value="true">1.0</rosparam>
             <rosparam param="mesh_marker_color_g"                       subst_value="true">0.0</rosparam>
             <rosparam param="mesh_marker_color_b"                       subst_value="true">0.0</rosparam>
-            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.2</rosparam>
 
         </node>
 
@@ -185,21 +185,21 @@
             <rosparam param="point_marker_scale"                        subst_value="true">0.005</rosparam>
             
             <rosparam param="point_marker_color_r"                      subst_value="true">0.0</rosparam>
-            <rosparam param="point_marker_color_g"                      subst_value="true">1.0</rosparam>
+            <rosparam param="point_marker_color_g"                      subst_value="true">0.5</rosparam>
             <rosparam param="point_marker_color_b"                      subst_value="true">0.0</rosparam>
-            <rosparam param="point_marker_color_a"                      subst_value="true">0.6</rosparam>
+            <rosparam param="point_marker_color_a"                      subst_value="true">0.2</rosparam>
 
-            <rosparam param="line_marker_scale_multiplier"              subst_value="true">6</rosparam>
+            <rosparam param="line_marker_scale_multiplier"              subst_value="true">1</rosparam>
 
             <rosparam param="line_marker_color_r"                       subst_value="true">0.0</rosparam>
-            <rosparam param="line_marker_color_g"                       subst_value="true">1.0</rosparam>
+            <rosparam param="line_marker_color_g"                       subst_value="true">0.5</rosparam>
             <rosparam param="line_marker_color_b"                       subst_value="true">0.0</rosparam>
-            <rosparam param="line_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="line_marker_color_a"                       subst_value="true">0.0</rosparam>
 
             <rosparam param="mesh_marker_color_r"                       subst_value="true">0.0</rosparam>
-            <rosparam param="mesh_marker_color_g"                       subst_value="true">1.0</rosparam>
+            <rosparam param="mesh_marker_color_g"                       subst_value="true">0.5</rosparam>
             <rosparam param="mesh_marker_color_b"                       subst_value="true">0.0</rosparam>
-            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.2</rosparam>
 
         </node>
 
@@ -247,19 +247,19 @@
             <rosparam param="point_marker_color_r"                      subst_value="true">0.0</rosparam>
             <rosparam param="point_marker_color_g"                      subst_value="true">0.0</rosparam>
             <rosparam param="point_marker_color_b"                      subst_value="true">1.0</rosparam>
-            <rosparam param="point_marker_color_a"                      subst_value="true">0.6</rosparam>
+            <rosparam param="point_marker_color_a"                      subst_value="true">0.2</rosparam>
             
-            <rosparam param="line_marker_scale_multiplier"              subst_value="true">6</rosparam>
+            <rosparam param="line_marker_scale_multiplier"              subst_value="true">1</rosparam>
 
             <rosparam param="line_marker_color_r"                       subst_value="true">0.0</rosparam>
             <rosparam param="line_marker_color_g"                       subst_value="true">0.0</rosparam>
             <rosparam param="line_marker_color_b"                       subst_value="true">1.0</rosparam>
-            <rosparam param="line_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="line_marker_color_a"                       subst_value="true">0.0</rosparam>
 
             <rosparam param="mesh_marker_color_r"                       subst_value="true">0.0</rosparam>
             <rosparam param="mesh_marker_color_g"                       subst_value="true">1.0</rosparam>
             <rosparam param="mesh_marker_color_b"                       subst_value="true">1.0</rosparam>
-            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.6</rosparam>
+            <rosparam param="mesh_marker_color_a"                       subst_value="true">0.2</rosparam>
 
         </node>
 
@@ -721,7 +721,7 @@
         <rosparam param="marker_color"                  subst_value="true">{r: 1.0, g: 0.5, b: 0.0, a: 0.6}</rosparam>
 
         <rosparam param="text_scale"                    subst_value="true">0.15</rosparam>
-        <rosparam param="text_color"                    subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 1.0}</rosparam>
+        <rosparam param="text_color"                    subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 0.1}</rosparam>
         <rosparam param="text_offset_xyz"               subst_value="true">{'x': 0.0, 'y': 0.0, 'z': 0.1}</rosparam>
 
         <rosparam param="sphere_scale"                  subst_value="true">0.11</rosparam>
@@ -744,7 +744,7 @@
         <rosparam param="marker_color"                  subst_value="true">{r: 1.0, g: 0.0, b: 1.0, a: 0.6}</rosparam>
 
         <rosparam param="text_scale"                  subst_value="true">0.15</rosparam>
-        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 1.0}</rosparam>
+        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 0.5}</rosparam>
         <rosparam param="text_offset_xyz"             subst_value="true">{'x': 0.0, 'y': 0.0, 'z': 0.1}</rosparam>
 
         <rosparam param="sphere_scale"                  subst_value="true">0.11</rosparam>
@@ -767,7 +767,7 @@
         <rosparam param="marker_color"                  subst_value="true">{r: 0.5, g: 0.0, b: 0.5, a: 0.6}</rosparam>
 
         <rosparam param="text_scale"                  subst_value="true">0.15</rosparam>
-        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 1.0}</rosparam>
+        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 0.1}</rosparam>
         <rosparam param="text_offset_xyz"             subst_value="true">{'x': 0.0, 'y': 0.0, 'z': 0.1}</rosparam>
 
         <rosparam param="sphere_scale"                  subst_value="true">0.11</rosparam>
@@ -790,7 +790,7 @@
         <rosparam param="marker_color"                  subst_value="true">{r: 0.5, g: 0.0, b: 1.0, a: 0.6}</rosparam>
 
         <rosparam param="text_scale"                  subst_value="true">0.15</rosparam>
-        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 1.0}</rosparam>
+        <rosparam param="text_color"                  subst_value="true">{r: 0.0, g: 0.0, b: 0.0, a: 0.1}</rosparam>
         <rosparam param="text_offset_xyz"             subst_value="true">{'x': 0.0, 'y': 0.0, 'z': 0.1}</rosparam>
 
         <rosparam param="sphere_scale"                  subst_value="true">0.11</rosparam>
